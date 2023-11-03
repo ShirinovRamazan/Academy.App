@@ -90,11 +90,5 @@ namespace Academy.Service.Services.Implementations
             return "Uptaded Successfully";
         }
 
-
-
-
-
-
-
     }
 }

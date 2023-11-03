@@ -42,8 +42,6 @@ namespace Academy.Service.Services.Implementations
                 request = Console.ReadLine();
             }
 
-
-
         }
         public async Task CreateStudent()
         {
@@ -61,16 +59,17 @@ namespace Academy.Service.Services.Implementations
                 Console.WriteLine($"{i}.{item}");
                 i++;
             }
-
-
-            bool IsExsist;
-            int EnumIndex;
-            do
+ 
+            
+                Console.WriteLine("Add Education:");
+                int.TryParse(Console.ReadLine(), out int EnumIndex);
+               bool IsExsist = Enum.IsDefined(typeof(Education), (Education)EnumIndex);
+             while (!IsExsist)
             {
                 Console.WriteLine("Add Education:");
                 int.TryParse(Console.ReadLine(), out EnumIndex);
                 IsExsist = Enum.IsDefined(typeof(Education), (Education)EnumIndex);
-            } while (!IsExsist);
+            }
 
             string result = await studentService.CreateAsync(Fullname, Group, Average, (Education)EnumIndex);
             Console.WriteLine(result);
@@ -94,45 +93,44 @@ namespace Academy.Service.Services.Implementations
         {
             Console.WriteLine("Add Id");
             string Id = Console.ReadLine();
-          string result =  await studentService.RemoveAsync(Id);
+            string result = await studentService.RemoveAsync(Id);
             Console.WriteLine(result);
         }
 
-         public async Task UptadeStudent()
+        public async Task UptadeStudent()
         {
             Console.WriteLine("Add Id:");
             string Id = Console.ReadLine();
             Console.WriteLine("Add Fullname:");
-                string Fullname = Console.ReadLine();
-                Console.WriteLine("Add Group:");
-                string Group = Console.ReadLine();
-                Console.WriteLine("Add Average:");
-                int.TryParse(Console.ReadLine(), out int Average);
+            string Fullname = Console.ReadLine();
+            Console.WriteLine("Add Group:");
+            string Group = Console.ReadLine();
+            Console.WriteLine("Add Average:");
+            int.TryParse(Console.ReadLine(), out int Average);
 
 
-                int i = 1;
-                foreach (var item in Enum.GetValues(typeof(Education)))
-                {
-                    Console.WriteLine($"{i}.{item}");
-                    i++;
-                }
+            int i = 1;
+            foreach (var item in Enum.GetValues(typeof(Education)))
+            {
+                Console.WriteLine($"{i}.{item}");
+                i++;
+            }
 
 
-                bool IsExsist;
-                int EnumIndex;
-                do
-                {
-                    Console.WriteLine("Add Education:");
-                    int.TryParse(Console.ReadLine(), out EnumIndex);
-                    IsExsist = Enum.IsDefined(typeof(Education), (Education)EnumIndex);
-                } while (!IsExsist);
+            Console.WriteLine("Add Education:");
+            int.TryParse(Console.ReadLine(), out int EnumIndex);
+            bool IsExsist = Enum.IsDefined(typeof(Education), (Education)EnumIndex);
+            while (!IsExsist)
+            {
+                Console.WriteLine("Add Education:");
+                int.TryParse(Console.ReadLine(), out EnumIndex);
+                IsExsist = Enum.IsDefined(typeof(Education), (Education)EnumIndex);
+            }
 
-                string result = await studentService.UptadeAsync(Id,Fullname, Group, Average, (Education)EnumIndex);
-                Console.WriteLine(result);
+            string result = await studentService.UptadeAsync(Id, Fullname, Group, Average, (Education)EnumIndex);
+            Console.WriteLine(result);
 
-            
         }
-
 
         async Task Menu()
         {

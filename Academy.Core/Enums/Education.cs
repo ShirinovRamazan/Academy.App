@@ -6,6 +6,5 @@ namespace Academy.Core.Enums
         Programming=1,
         Designer,
         SystemAdminstratin
-
     }
 }
